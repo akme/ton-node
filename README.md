@@ -4,7 +4,7 @@ Dockerfile for Telegram Open Network Node
 #### Install
 ```docker pull it4addict/ton-node```
 #### Create volume
-```docker create volume ton-db```
+```docker volume create ton-db```
 #### Run
 ```docker run -d --name ton-node --mount source=ton-db,target=/var/ton-work/db --network host -e "PUBLIC_IP=<YOUR_PUBLIC_IP>" -e "CONSOLE_PORT=<TCP-PORT1>" -e "LITESERVER=true" -e "LITE_PORT=<TCP-PORT2>" -it it4addict/ton-node```
 
