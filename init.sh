@@ -38,12 +38,11 @@ else
     read -r CLIENT_ID1 CLIENT_ID2 <<< $(generate-random-id -m keys -n client)
     echo -e "\e[1;32m[+]\e[0m Generated client private certificate $CLIENT_ID1 $CLIENT_ID2"
     echo -e "\e[1;32m[+]\e[0m Generated client public certificate"
+    # Adding client permissions
+    sed -e "s/CONSOLE-PORT/\"$(printf "%q" $CONSOLE_PORT)\"/g" -e "s~SERVER-ID~\"$(printf "%q" $SERVER_ID2)\"~g" -e "s~CLIENT-ID~\"$(printf "%q" $CLIENT_ID2)\"~g" control.template > control.new
+    sed -e "s~\"control\"\ \:\ \[~$(printf "%q" $(cat control.new))~g" config.json > config.json.new
+    mv config.json.new config.json
 fi
-
-# Adding client permissions
-sed -e "s/CONSOLE-PORT/\"$(printf "%q" $CONSOLE_PORT)\"/g" -e "s~SERVER-ID~\"$(printf "%q" $SERVER_ID2)\"~g" -e "s~CLIENT-ID~\"$(printf "%q" $CLIENT_ID2)\"~g" control.template > control.new
-sed -e "s~\"control\"\ \:\ \[~$(printf "%q" $(cat control.new))~g" config.json > config.json.new
-mv config.json.new config.json
 
 # Liteserver
 if [ -z "$LITESERVER" ]; then
