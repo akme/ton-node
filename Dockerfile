@@ -10,7 +10,7 @@ WORKDIR /ton
 
 RUN mkdir build && \
 	cd build && \
-	cmake ../ton-node && \
+	cmake .. && \
 	make -j 8
 
 FROM ubuntu:18.04
