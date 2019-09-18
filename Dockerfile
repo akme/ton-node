@@ -1,13 +1,12 @@
 FROM ubuntu:18.04 as builder
 RUN apt-get update && \
-	apt-get install -y build-essential cmake clang-6.0 openssl libssl-dev zlib1g-dev gperf wget && \
+	apt-get install -y build-essential cmake clang-6.0 openssl libssl-dev zlib1g-dev gperf wget git && \
 	rm -rf /var/lib/apt/lists/*
 ENV CC clang-6.0
 ENV CXX clang++-6.0
-RUN mkdir /ton
+WORKDIR /
+RUN git clone --recursive https://github.com/ton-blockchain/ton
 WORKDIR /ton
-RUN wget https://test.ton.org/ton-blockchain-full.tar.xz
-RUN tar xf ton-blockchain-full.tar.xz
 
 RUN mkdir build && \
 	cd build && \
