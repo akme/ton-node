@@ -11,7 +11,7 @@ WORKDIR /ton
 RUN mkdir build && \
 	cd build && \
 	cmake .. && \
-	make -j 8
+	make
 
 FROM ubuntu:18.04
 RUN apt-get update && \
