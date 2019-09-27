@@ -20,6 +20,7 @@ RUN apt-get update && \
 RUN mkdir -p /var/ton-work/db && \
 	mkdir -p /var/ton-work/db/static
 
+COPY --from=builder /ton/build/lite-client/lite-client /usr/local/bin/
 COPY --from=builder /ton/build/validator-engine/validator-engine /usr/local/bin/
 COPY --from=builder /ton/build/validator-engine-console/validator-engine-console /usr/local/bin/
 COPY --from=builder /ton/build/utils/generate-random-id /usr/local/bin/
