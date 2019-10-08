@@ -10,8 +10,8 @@ WORKDIR /ton
 
 RUN mkdir build && \
 	cd build && \
-	cmake .. && \
-	make
+	cmake .. -DCMAKE_BUILD_TYPE=Release && \
+	make -j 4
 
 FROM ubuntu:18.04
 RUN apt-get update && \
@@ -29,4 +29,4 @@ WORKDIR /var/ton-work/db
 COPY init.sh control.template ./
 RUN chmod +x init.sh
 
-ENTRYPOINT ["./init.sh"]
+ENTRYPOINT ["/var/ton-work/db/init.sh"]
