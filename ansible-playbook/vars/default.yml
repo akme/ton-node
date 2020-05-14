@@ -1,0 +1,12 @@
+---
+create_containers: 1
+default_container_name: ton-mainnet-node
+default_container_image: it4addict/ton-node
+ton_db_folder: /mnt/tondb/ton-mainnet
+ton_archive_folder: /mnt/archival/ton-mainnet
+ton_db_volume_name: ton-db-mainnet
+ton_archive_volume_name: ton-archive-mainnet
+ton_config_url: https://raw.githubusercontent.com/TON-Community-Foundation/general-ton-node/master/tcf-testnet.config.json
+ton_console_port: "46731"
+ton_lite_server: "true"
+ton_lite_port: "46732"
