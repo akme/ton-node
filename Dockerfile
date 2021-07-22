@@ -1,11 +1,11 @@
-FROM ubuntu:18.04 as builder
+FROM ubuntu:20.04 as builder
 RUN apt-get update && \
-	apt-get install -y build-essential cmake clang-6.0 openssl libssl-dev zlib1g-dev gperf wget git && \
+	DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential cmake clang-6.0 openssl libssl-dev zlib1g-dev gperf wget git && \
 	rm -rf /var/lib/apt/lists/*
 ENV CC clang-6.0
 ENV CXX clang++-6.0
 WORKDIR /
-RUN git clone --recursive https://github.com/ton-blockchain/ton
+RUN git clone --recursive https://github.com/newton-blockchain/ton
 WORKDIR /ton
 
 RUN mkdir build && \
@@ -13,7 +13,7 @@ RUN mkdir build && \
 	cmake .. -DCMAKE_BUILD_TYPE=Release && \
 	make -j 4
 
-FROM ubuntu:18.04
+FROM ubuntu:20.04
 RUN apt-get update && \
 	apt-get install -y openssl wget&& \
 	rm -rf /var/lib/apt/lists/*
